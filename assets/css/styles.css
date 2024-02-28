@@ -41,12 +41,12 @@ input, textarea{
 }
 
 .logo{
-  top:30%;
-  left:35%;
   filter: hue-rotate(89deg) drop-shadow(2px 4px 6px black);
   animation: aparecer 1.5s;
 }
 
-.banner-principal{
+.main-hero{
+  background-image: url(../img/main-bg.jpg);
+  background-size: cover;
   filter: brightness(0.8);
 }
