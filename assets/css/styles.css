@@ -13,9 +13,17 @@
   }
 }
 
+body, html {
+  background-color: #181a1b !important;
+}
+
 body, html, p, a, h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
- 
+  
+}
+
+.bg-dark {
+  background-color: #181a1b !important;
 }
 
 .bg-primary{
@@ -50,3 +58,26 @@ input, textarea{
   background-size: cover;
   filter: brightness(0.8);
 }
+
+footer a, p, h3 {
+  color: #858585;
+}
+
+.footer-icon {
+  color: var(--terciary-color)!important;
+}
+
+.footer-line {
+  margin-top: 20px;
+  text-align: center;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:#858585;
+  height: 2px;
+}
+
