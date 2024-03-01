@@ -81,3 +81,11 @@ hr {
   height: 2px;
 }
 
+.item {
+  color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  height: 25rem;
+  display: flex;
+  width: 100%;
+}
