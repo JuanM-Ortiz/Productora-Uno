@@ -49,12 +49,13 @@ input, textarea{
 }
 
 .logo{
-  filter: hue-rotate(89deg) drop-shadow(2px 4px 6px black);
+  filter: hue-rotate(89deg) drop-shadow(2px 4px 6px black) brightness(120%);
   animation: aparecer 1.5s;
+  width: 30%;
 }
 
 .main-hero{
-  background-image: url(../img/main-bg.jpg);
+  background-image: url(../img/main-bg-dark.jpg);
   background-size: cover;
   filter: brightness(0.8);
 }
@@ -123,4 +124,14 @@ hr {
 
 .item:hover img {
   filter: grayscale(80%) brightness(120%); 
+}
+
+
+@media (max-width: 600px) {
+  .logo{
+    width: 80%;
+  }
+  .item {
+    height: 20rem;
+  }
 }
