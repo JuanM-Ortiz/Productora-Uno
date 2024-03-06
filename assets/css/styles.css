@@ -135,6 +135,15 @@ hr {
   filter: grayscale(80%) brightness(120%); 
 }
 
+.bg-gray{
+  background-color: #858585;
+}
+
+.form-login input{
+ background-color: #d4d4d4!important;
+ color: #423336!important;
+}
+
 @media (max-width: 600px) {
   .logo{
     width: 80%;

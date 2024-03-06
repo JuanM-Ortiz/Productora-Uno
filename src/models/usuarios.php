@@ -1,6 +1,6 @@
 <?php
 
-class Categorias
+class Usuarios
 {
   private $conexion;
 
@@ -9,9 +9,10 @@ class Categorias
     $this->conexion = $conexion;
   }
 
-  public function getCategorias()
+  public function getUser($username, $password)
   {
-    $query = "SELECT titulo, link, descripcion FROM categorias WHERE deleted_at = null";
+    $query = "SELECT * FROM usuarios WHERE username = '{$username}' AND contraseña = '{$password}' AND deleted_at is null";
+
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return $resultado->fetchAll(PDO::FETCH_ASSOC);
