@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-03-2024 a las 20:05:42
+-- Tiempo de generación: 14-03-2024 a las 00:42:39
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -31,9 +31,21 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
   `titulo` varchar(200) DEFAULT NULL,
   `descripcion` tinytext DEFAULT NULL,
-  `link` varchar(250) DEFAULT NULL,
+  `img` varchar(150) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `titulo`, `descripcion`, `img`, `deleted_at`) VALUES
+(1, 'LiveStream', 'Hacemos todo tipo de changa\n', 'livestream.jpg', NULL),
+(2, 'Circuito Cerrado', NULL, 'circuito-cerrado.jpg', NULL),
+(3, 'Falso Vivo', NULL, 'falso-vivo.jpg', NULL),
+(4, 'Videos', NULL, 'videos.jpg', NULL),
+(5, 'Fotografía', NULL, 'fotografia.jpg', NULL),
+(6, 'Edición', NULL, 'edicion.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -46,6 +58,15 @@ CREATE TABLE `categorias_videos` (
   `id_categoria` int(11) NOT NULL,
   `id_video` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categorias_videos`
+--
+
+INSERT INTO `categorias_videos` (`id`, `id_categoria`, `id_video`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -77,9 +98,17 @@ CREATE TABLE `videos` (
   `id` int(11) NOT NULL,
   `titulo` varchar(150) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
-  `link` varchar(250) DEFAULT NULL,
+  `link` varchar(500) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `videos`
+--
+
+INSERT INTO `videos` (`id`, `titulo`, `descripcion`, `link`, `deleted_at`) VALUES
+(1, 'Frusciante', 'Juan manuel frusciante toca la guitarrita, la toca un poco, vos fijate.', '<iframe width=\"1903\" height=\"750\" src=\"https://www.youtube.com/embed/UjwDPxpNuHc?list=RDUjwDPxpNuHc\" title=\"John Frusciante - Heaven\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', NULL),
+(2, 'El pasito del delfin', 'Hasta el fin?', '<iframe width=\"1903\" height=\"750\" src=\"https://www.youtube.com/embed/hKDDbs9XB2k\" title=\"EL PASITO DE DELFIN\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -117,13 +146,13 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_videos`
 --
 ALTER TABLE `categorias_videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -135,7 +164,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

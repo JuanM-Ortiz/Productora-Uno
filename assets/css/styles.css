@@ -93,7 +93,7 @@ hr {
 }
 
 .item::after {
-  content: "Ver Mas";
+  content: attr(data-content);
   position: absolute;
   top: 0;
   left: 0;
@@ -142,6 +142,28 @@ hr {
 .form-login input{
  background-color: #d4d4d4!important;
  color: #423336!important;
+}
+
+.category-main-container{
+  max-height:600px!important;
+  filter:grayscale(100%) blur(2px);
+  background-position:center;
+}
+
+.category-title{
+  animation: aparecer 1.5s;
+  left: 40% !important;
+  top: 40% !important;
+  font-size: 5rem!important;
+  text-shadow: -6px 4px 4px #181a1b;
+}
+
+.video-container{
+  transition: transform .2s;
+}
+
+.video-container:hover{
+  transform: scale(1.1);
 }
 
 @media (max-width: 600px) {

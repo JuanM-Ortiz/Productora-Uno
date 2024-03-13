@@ -1,3 +1,12 @@
+<?php
+include_once 'src/db/conn.php';
+include_once 'src/models/categorias.php';
+
+$conexion = Conexion::conectar();
+$categoryModel = new Categorias($conexion);
+$categorias = $categoryModel->getCategorias();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,16 +16,13 @@
   <title>Productora Uno</title>
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -49,24 +55,19 @@
           <form action="src/enviar.php" method="post">
             <div class="row">
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="nombre" type="text" placeholder="Nombre"
-                  aria-label="Nombre">
+                <input class="form-control form-control-lg bg-secondary" name="nombre" type="text" placeholder="Nombre" aria-label="Nombre">
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="celular" type="text"
-                  placeholder="Celular" aria-label="Celular">
+                <input class="form-control form-control-lg bg-secondary" name="celular" type="text" placeholder="Celular" aria-label="Celular">
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="email" type="text" placeholder="Email"
-                  aria-label="Email">
+                <input class="form-control form-control-lg bg-secondary" name="email" type="text" placeholder="Email" aria-label="Email">
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="link" type="text"
-                  placeholder="Link de referencia" aria-label="Link de referencia">
+                <input class="form-control form-control-lg bg-secondary" name="link" type="text" placeholder="Link de referencia" aria-label="Link de referencia">
               </div>
               <div class="col-12 py-2">
-                <textarea class="form-control form-control-lg bg-secondary" name="mensaje"
-                  placeholder="Escribe tu consulta..." rows=5></textarea>
+                <textarea class="form-control form-control-lg bg-secondary" name="mensaje" placeholder="Escribe tu consulta..." rows=5></textarea>
               </div>
               <div class="col-md-4 offset-md-4 col-12 text-center py-3">
                 <button type="submit" class="btn btn-primary btn-lg text-white px-5 border-0">ENVIAR</button>
@@ -80,12 +81,18 @@
 
   <!-- CAROUSEL -->
 
+
   <div class="owl-container">
     <div class="owl-carousel owl-theme">
-      <div class="item"><a href=""><img src="assets/img/img2.jpg" alt="img2"></a></div>
-      <div class="item"><a href=""><img src="assets/img/img3.jpg" alt="img3"></a></div>
-      <div class="item"><a href=""><img src="assets/img/img4.jpg" alt="img4"></a></div>
-      <div class="item"><a href=""><img src="assets/img/img5.jpg" alt="img5"></a></div>
+      <?php
+      foreach ($categorias as $categoria) :
+        echo '<div class="item" data-content="' . $categoria['titulo'] . '">
+                  <a href="categorias.php?id=' . $categoria['id'] . '">
+                    <img src="assets/img/' . $categoria['img'] . '" alt="' . $categoria['img'] . '">
+                  </a>
+                </div>';
+      endforeach;
+      ?>
     </div>
   </div>
 
@@ -96,16 +103,16 @@
       <div class="col-md-4 text-md-start col-12 text-center ">
         <h3 class="fw-bold">Contacto</h3>
         <p><i class="fas fa-phone pt-3"></i> +2656 478424</p>
-        <p><i class="fas fa-envelope"></i> email@email.com</p>
+        <p><i class="fas fa-envelope"></i> info@productora-uno.com.ar</p>
         <p><i class="fab fa-whatsapp"></i> +2664 212121</p>
       </div>
-      <div class="col-md-4 text-center pt-3 pt-md-0">
-        <a href="#" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
-        <a href="#" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a>
-        <a href="#" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
+      <div class="col-md-4 text-center pt-3 pt-md-0 d-flex  justify-content-center align-items-center">
+        <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
+        <!-- <a href="#" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a> -->
+        <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
       </div>
-      <div class="col-md-4 mt-5 text-center">
-        <p><i class="fas fa-map-marker-alt"></i> Merlo, San Luis, Argentina.</p>
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <p class="mb-0"><i class="fas fa-map-marker-alt"></i> Merlo, San Luis, Argentina.</p>
       </div>
     </footer>
     <hr>
@@ -116,9 +123,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/owl.carousel.min.js"></script>
   <script src="assets/js/main.js"></script>
