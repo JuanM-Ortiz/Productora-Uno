@@ -1,5 +1,8 @@
 <?php
 
+include '../vendor/autload.php';
+
+
 if ($_POST && cumpleRequisitos($_POST)) {
   $para = "matiassgalasso@hotmail.com";
   $asunto = "Consulta de {$nombre}";
