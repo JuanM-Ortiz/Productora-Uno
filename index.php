@@ -102,9 +102,9 @@ $categorias = $categoryModel->getCategorias();
     <footer class="row py-5 ">
       <div class="col-md-4 text-md-start col-12 text-center ">
         <h3 class="fw-bold">Contacto</h3>
-        <p><i class="fas fa-phone pt-3"></i> +2656 478424</p>
+        <p><i class="fas fa-phone pt-3"></i> +54 2656 478424</p>
         <p><i class="fas fa-envelope"></i> info@productora-uno.com.ar</p>
-        <p><i class="fab fa-whatsapp"></i> +2664 212121</p>
+        <p><i class="fab fa-whatsapp"></i> +54 9 2664 344614</p>
       </div>
       <div class="col-md-4 text-center pt-3 pt-md-0 d-flex  justify-content-center align-items-center">
         <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
