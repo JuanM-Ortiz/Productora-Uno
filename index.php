@@ -55,16 +55,16 @@ $categorias = $categoryModel->getCategorias();
           <form action="src/enviar.php" method="post">
             <div class="row">
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="nombre" type="text" placeholder="Nombre" aria-label="Nombre">
+                <input class="form-control form-control-lg bg-secondary" name="nombre" type="text" placeholder="Nombre" aria-label="Nombre" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="celular" type="text" placeholder="Celular" aria-label="Celular">
+                <input class="form-control form-control-lg bg-secondary" name="celular" type="text" placeholder="Celular" aria-label="Celular" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="email" type="text" placeholder="Email" aria-label="Email">
+                <input class="form-control form-control-lg bg-secondary" name="email" type="email" placeholder="Email" aria-label="Email" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="link" type="text" placeholder="Link de referencia" aria-label="Link de referencia">
+                <input class="form-control form-control-lg bg-secondary" name="link" type="text" placeholder="Link de referencia" aria-label="Link de referencia" required>
               </div>
               <div class="col-12 py-2">
                 <textarea class="form-control form-control-lg bg-secondary" name="mensaje" placeholder="Escribe tu consulta..." rows=5></textarea>

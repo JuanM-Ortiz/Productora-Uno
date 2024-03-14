@@ -13,7 +13,7 @@ if ($_POST['userName'] && $_POST['password']) {
     header("Location: index.php");
   }
 
-  header("Location: admin.php");
+  header("Location: categorias.php");
 }
 
 ?>

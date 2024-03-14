@@ -1,7 +1,7 @@
 <?php
 
 if ($_POST && cumpleRequisitos($_POST)) {
-  $para = "destinatario@example.com";
+  $para = "matiassgalasso@hotmail.com";
   $asunto = "Consulta de {$nombre}";
   $mensaje = "{$nombre} ha realizado una consulta via web:
   Celular: {$celular}
@@ -20,8 +20,7 @@ if ($_POST && cumpleRequisitos($_POST)) {
   }
 }
 
-
 function cumpleRequisitos($postData)
 {
-  return $postData['nombre'] && $postData['celuar'] && $postData['link'] && $postData['mensaje'] && $postData['email'];
+  return $postData['nombre'] && $postData['celular'] && $postData['link'] && $postData['mensaje'] && $postData['email'];
 }

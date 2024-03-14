@@ -9,9 +9,12 @@ class Categorias
     $this->conexion = $conexion;
   }
 
-  public function getCategorias()
+  public function getCategorias($all = false)
   {
-    $query = "SELECT id, titulo, descripcion, img FROM categorias WHERE deleted_at is null";
+    $query = "SELECT * FROM categorias";
+    if (!$all) {
+      $query .= ' WHERE deleted_at is null';
+    }
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -23,5 +26,20 @@ class Categorias
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return $resultado->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function eliminarPorId($idCategoria)
+  {
+    $query = "UPDATE categorias SET deleted_at = now() WHERE id = $idCategoria";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return true;
+  }
+  public function restaurarPorId($idCategoria)
+  {
+    $query = "UPDATE categorias SET deleted_at = null WHERE id = $idCategoria";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return true;
   }
 }
