@@ -12,6 +12,7 @@ if ($_POST['eliminar'] && $_POST['eliminar'] != '') {
   if ($categoriasModel->eliminarPorId($_POST['eliminar'])) {
     echo 1;
   }
+  $conexion = null;
 }
 
 if ($_POST['restaurar'] && $_POST['restaurar'] != '') {
@@ -22,4 +23,6 @@ if ($_POST['restaurar'] && $_POST['restaurar'] != '') {
   if ($categoriasModel->restaurarPorId($_POST['restaurar'])) {
     echo 1;
   }
+
+  $conexion = null;
 }

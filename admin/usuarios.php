@@ -33,12 +33,18 @@ $usuarios = $usersModel->getAllUsers();
 </head>
 
 <?php include_once 'modules/navbar.html'; ?>
+<style>
+  input,
+  textarea {
+    color: black !important;
+  }
+</style>
 
 <body class="bg-light vh-100">
-    
-    <h1>Usuarios</h1>
 
-    <div class="container vh-100 mt-5">
+  <h1>Usuarios</h1>
+
+  <div class="container vh-100 mt-5">
     <div class="d-flex mt-5 justify-content-between mb-3">
       <h5>Usuarios</h5>
       <button class="btn btn-success fw-bold" id="agregarUsuario"><i class="fa fa-plus"></i> Nuevo Usuario</button>
@@ -53,7 +59,7 @@ $usuarios = $usersModel->getAllUsers();
         </tr>
       </thead>
       <tbody>
-          <?php foreach ($usuarios as $usuario) :
+        <?php foreach ($usuarios as $usuario) :
           echo '<tr>
               <td class="text-center">' . $usuario['id'] . '</td>
               <td class="text-center">' . $usuario['username'] . '</td>';
@@ -119,13 +125,50 @@ $usuarios = $usersModel->getAllUsers();
   }
 
   $(document).ready(function() {
+
     $(document).on("click", "#agregarUsuario", function() {
-      $("#categoriasModal").modal("show");
+      $("#usuariosModal").modal("show");
+      $("#formUsuarios").trigger("reset");
     })
+
+    $(document).on("click", "#guardarUsuario", function() {
+      let username = $("#username").val();
+      let pass = $("#password").val();
+      let userId = $("#userId").val() ?? null;
+
+      if (!username || !pass) {
+        alert("Complete todos los campos...");
+        return;
+      }
+
+      $.post("controllers/usuario.php", {
+        username,
+        pass,
+        userId
+      }, function(result) {
+        if (!result) {
+          window.alert('Ocurrio un error.');
+          return;
+        }
+        if (result) {
+          window.alert('Usuario guardado correctamente!');
+          window.location.reload();
+        }
+      });
+    })
+
+
+
     $(document).on("click", "#editarUsuario", function() {
       $("#usuariosModal").modal("show");
+      let row = $(this).closest("tr");
+      userId = row.find("td:nth-child(1)").text();
+      userName = row.find("td:nth-child(2)").text();
+      $("#username").val(userName);
+      $("#userId").val(userId);
     })
   })
 </script>
 </body>
+
 </html>

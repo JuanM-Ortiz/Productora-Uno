@@ -42,10 +42,26 @@ class Usuarios
     $resultado->execute();
     return true;
   }
-  
+
   public function restaurarPorId($idUser)
   {
     $query = "UPDATE usuarios SET deleted_at = null WHERE id = $idUser";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return true;
+  }
+
+  public function crear($username, $pass)
+  {
+    $query = "INSERT INTO usuarios (username, contraseña) VALUES ('{$username}', '{$pass}')";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return true;
+  }
+
+  public function editar($idUser, $username, $pass)
+  {
+    $query = "UPDATE usuarios SET username = '{$username}', contraseña = '{$pass}' WHERE id = $idUser";
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return true;
