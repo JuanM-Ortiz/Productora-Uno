@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+if (!$_SESSION['user']) {
+  header("Location: index.php");
+}
+
+include_once '../src/db/conn.php';
+include_once '../src/models/videos.php';
+include_once '../src/models/categorias.php';
+
+$conexion = Conexion::conectar();
+
+$videosModel = new Videos($conexion);
+$categoriasModel = new Categorias($conexion);
+
+$videos = $videosModel->getVideos(true);
+$categorias = $categoriasModel->getCategorias();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +32,20 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-
+<style>
+  input,
+  textarea {
+    color: black !important;
+  }
+</style>
 <?php include_once 'modules/navbar.html'; ?>
 
 <body class="bg-light vh-100">
-    <h1>Videos</h1>
 
-    <div class="container vh-100 mt-5">
+  <div class="container vh-100 mt-5">
     <div class="d-flex mt-5 justify-content-between mb-3">
-      <h5>Categorias</h5>
-      <button class="btn btn-success fw-bold" id="agregarCategoria"><i class="fa fa-plus"></i> Nueva</button>
+      <h5>Videos</h5>
+      <button class="btn btn-success fw-bold" id="agregarVideo"><i class="fa fa-plus"></i> Nuevo</button>
     </div>
 
     <table class="table table-primary">
@@ -31,17 +54,21 @@
           <th class="text-center">#</th>
           <th class="text-center">Titulo</th>
           <th class="text-center">Descripcion</th>
-          <th class="text-center">Imagen</th>
+          <th class="text-center">Categoria</th>
+          <th class="text-center">Video</th>
           <th class="text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($categorias as $categoria) :
+        <?php foreach ($videos as $video) :
+          $link = explode('src=', $video['link']);
+          $link = explode("title=", $link[1]);
           echo '<tr>
-                  <td class="text-center">' . $categoria['id'] . '</th>
-                  <td class="text-center">' . $categoria['titulo'] . '</th>
-                  <td class="text-center">' . $categoria['descripcion'] . '</td>
-                  <td class="text-center">' . $categoria['img'] . '</td>';
+                  <td class="text-center">' . $video['id'] . '</th>
+                  <td class="text-center">' . $video['titulo'] . '</th>
+                  <td class="text-center">' . $video['descripcion'] . '</td>
+                  <td class="text-center">' . $video['categoria'] . '</td>
+                  <td class="text-center"><a href=' . $link[0] . ' target="_blank">Ver</a></td>';
           if ($categoria['deleted_at'] == null) {
             echo '
                   <td class="text-center">
@@ -65,7 +92,7 @@
       </tbody>
     </table>
   </div>
-  <?php include_once 'modales/abm-categorias.html'; ?>
+  <?php include_once 'modales/abm-videos.php'; ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -103,13 +130,58 @@
   }
 
   $(document).ready(function() {
-    $(document).on("click", "#agregarCategoria", function() {
-      $("#categoriasModal").modal("show");
+    $(document).on("click", "#agregarVideo", function() {
+      $("#videosModal").modal("show");
+      $("#formVideos").trigger("reset");
     })
     $(document).on("click", "#editarCategoria", function() {
       $("#categoriasModal").modal("show");
     })
+
+    $(document).on("click", "#guardarVideo", function() {
+      let videoId = $("#videoId").val() ?? null;
+      let title = $("#title").val();
+      let desc = $("#desc").val();
+      let link = $("#link").val();
+      let categorias = $('.form-check-input:checkbox:checked').map(function() {
+        return this.value;
+      }).get();
+
+      if (!title || !desc || !categorias || !link) {
+        alert("Complete todos los campos...");
+        return;
+      }
+      categorias = JSON.stringify(categorias);
+      $.post("controllers/video.php", {
+        videoId,
+        title,
+        desc,
+        link,
+        categorias,
+      }, function(result) {
+        if (!result) {
+          window.alert('Ocurrio un error.');
+          return;
+        }
+        if (result) {
+          window.alert('Video guardado correctamente!');
+          window.location.reload();
+        }
+      });
+    })
+
+    $(document).on("click", "#editarCategoria", function() {
+      $("#categoriasModal").modal("show");
+      let row = $(this).closest("tr");
+      let categoryId = row.find("td:nth-child(1)").text();
+      let title = row.find("td:nth-child(2)").text();
+      let desc = row.find("td:nth-child(3)").text();
+      $("#categoryId").val(categoryId);
+      $("#title").val(title);
+      $("#desc").val(desc);
+    })
   })
 </script>
 </body>
+
 </html>

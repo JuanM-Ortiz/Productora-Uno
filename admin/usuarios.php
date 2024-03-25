@@ -74,13 +74,7 @@ $usuarios = $usersModel->getAllUsers();
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>';
-          } else {
-            echo '<td class="text-center">
-                    <button class="btn btn-success" title="Reactivar" type="button" onclick="restaurarUsuario(' . $usuario['id'] . ')">
-                      <i class="fa fa-undo"></i>
-                    </button>
-                  </td>';
-          };
+          }
           echo '</tr>';
         endforeach;
         ?>
@@ -95,33 +89,20 @@ $usuarios = $usersModel->getAllUsers();
 
 <script>
   function borrarUsuario(idUsuario) {
-    $.post("controllers/usuario.php", {
-      eliminar: idUsuario
-    }, function(result) {
-      if (!result) {
-        window.alert('Ocurrio un error.');
-        return;
-      }
-      if (result) {
-        window.alert('Usuario eliminado correctamente!');
-        window.location.reload();
-      }
-    });
-  }
-
-  function restaurarUsuario(idUsuario) {
-    $.post("controllers/usuario.php", {
-      restaurar: idUsuario
-    }, function(result) {
-      if (!result) {
-        window.alert('Ocurrio un error.');
-        return;
-      }
-      if (result) {
-        window.alert('Usuario restaurado correctamente!');
-        window.location.reload();
-      }
-    });
+    if (confirm("Está seguro que desea eliminar el usuario?") == true) {
+      $.post("controllers/usuario.php", {
+        eliminar: idUsuario
+      }, function(result) {
+        if (!result) {
+          window.alert('Ocurrio un error.');
+          return;
+        }
+        if (result) {
+          window.alert('Usuario eliminado correctamente!');
+          window.location.reload();
+        }
+      });
+    }
   }
 
   $(document).ready(function() {
@@ -129,6 +110,7 @@ $usuarios = $usersModel->getAllUsers();
     $(document).on("click", "#agregarUsuario", function() {
       $("#usuariosModal").modal("show");
       $("#formUsuarios").trigger("reset");
+      $("#password").attr("placeholder", "")
     })
 
     $(document).on("click", "#guardarUsuario", function() {
@@ -165,7 +147,8 @@ $usuarios = $usersModel->getAllUsers();
       userId = row.find("td:nth-child(1)").text();
       userName = row.find("td:nth-child(2)").text();
       $("#username").val(userName);
-      $("#userId").val(userId);
+      $("#userId").val(userId); +
+      $("#password").attr("placeholder", "Ingrese su nueva contraseña...")
     })
   })
 </script>
