@@ -82,7 +82,7 @@ $categorias = $categoryModel->getCategorias();
   <!-- CAROUSEL -->
 
 
-  <div class="owl-container">
+  <div  
     <div class="owl-carousel owl-theme">
       <?php
       foreach ($categorias as $categoria) :
