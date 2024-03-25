@@ -34,7 +34,12 @@ $categorias = $categoriasModel->getCategorias(true);
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <?php include_once 'modules/navbar.html'; ?>
-
+<style>
+  input,
+  textarea {
+    color: black !important;
+  }
+</style>
 
 <body class="bg-light">
 
@@ -60,7 +65,7 @@ $categorias = $categoriasModel->getCategorias(true);
                   <td class="text-center">' . $categoria['id'] . '</th>
                   <td class="text-center">' . $categoria['titulo'] . '</th>
                   <td class="text-center">' . $categoria['descripcion'] . '</td>
-                  <td class="text-center">' . $categoria['img'] . '</td>';
+                  <td class="text-center"><a target="_blank" href="../assets/img/' . $categoria['img'] . '">' . $categoria['img'] . '</a></td>';
           if ($categoria['deleted_at'] == null) {
             echo '
                   <td class="text-center">
@@ -124,9 +129,54 @@ $categorias = $categoriasModel->getCategorias(true);
   $(document).ready(function() {
     $(document).on("click", "#agregarCategoria", function() {
       $("#categoriasModal").modal("show");
+      $("#formCategorias").trigger("reset");
     })
+
+    $(document).on("click", "#guardarCategoria", function() {
+      var fd = new FormData();
+      var files = $('#img')[0].files[0];
+      let categoryId = $("#categoryId").val() ?? null;
+      let title = $("#title").val();
+      let desc = $("#desc").val();
+
+      if (!title || !desc || !files) {
+        alert("Complete todos los campos...");
+        return;
+      }
+
+      fd.append('file', files);
+      fd.append('categoryId', categoryId);
+      fd.append('title', title);
+      fd.append('desc', desc);
+
+      $.ajax({
+        url: 'controllers/categoria.php',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          if (!response) {
+            window.alert('Ocurrio un error.');
+            return;
+          }
+          if (response) {
+            window.alert('Categoria guardada correctamente!');
+            window.location.reload();
+          }
+        },
+      });
+    })
+
     $(document).on("click", "#editarCategoria", function() {
       $("#categoriasModal").modal("show");
+      let row = $(this).closest("tr");
+      let categoryId = row.find("td:nth-child(1)").text();
+      let title = row.find("td:nth-child(2)").text();
+      let desc = row.find("td:nth-child(3)").text();
+      $("#categoryId").val(categoryId);
+      $("#title").val(title);
+      $("#desc").val(desc);
     })
   })
 </script>

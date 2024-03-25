@@ -42,4 +42,20 @@ class Categorias
     $resultado->execute();
     return true;
   }
+
+  public function editar($idCategoria, $titulo, $descripcion, $img)
+  {
+    $query = "UPDATE categorias SET titulo = '{$titulo}', descripcion = '{$descripcion}', img = '{$img}' WHERE id = $idCategoria";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return true;
+  }
+
+  public function crear($titulo, $descripcion, $img)
+  {
+    $query = "INSERT INTO categorias (titulo, descripcion, img) VALUES ('{$titulo}','{$descripcion}','{$img}')";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return true;
+  }
 }
