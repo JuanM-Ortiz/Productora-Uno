@@ -20,7 +20,7 @@ class Usuarios
 
   public function getAllUsers()
   {
-    $query = "SELECT * FROM usuarios";
+    $query = "SELECT * FROM usuarios WHERE deleted_at IS null";
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +42,7 @@ class Usuarios
     $resultado->execute();
     return true;
   }
-
+/*
   public function restaurarPorId($idUser)
   {
     $query = "UPDATE usuarios SET deleted_at = null WHERE id = $idUser";
@@ -50,6 +50,7 @@ class Usuarios
     $resultado->execute();
     return true;
   }
+*/
 
   public function crear($username, $pass)
   {
