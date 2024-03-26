@@ -7,9 +7,9 @@ if ($_POST['eliminar'] && $_POST['eliminar'] != '') {
 
   $conexion = Conexion::conectar();
 
-  $categoriasModel = new Categorias($conexion);
+  $videosModel = new Videos($conexion);
 
-  if ($categoriasModel->eliminarPorId($_POST['eliminar'])) {
+  if ($videosModel->eliminarPorId($_POST['eliminar'])) {
     echo 1;
   }
   $conexion = null;
@@ -18,9 +18,9 @@ if ($_POST['eliminar'] && $_POST['eliminar'] != '') {
 if ($_POST['restaurar'] && $_POST['restaurar'] != '') {
   $conexion = Conexion::conectar();
 
-  $categoriasModel = new Categorias($conexion);
+  $videosModel = new Videos($conexion);
 
-  if ($categoriasModel->restaurarPorId($_POST['restaurar'])) {
+  if ($videosModel->restaurarPorId($_POST['restaurar'])) {
     echo 1;
   }
 
@@ -32,7 +32,7 @@ if ($_POST['desc'] && $_POST['title'] && $_POST['link']) {
   $videosModel = new Videos($conexion);
   $categorias = json_decode($_POST['categorias']);
   if ($_POST['videoId']) {
-    //$videosModel->editar($_POST['videoId'], $_POST['title'], $_POST['desc'], $_POST['link']);
+    $videosModel->editar($_POST['videoId'], $_POST['title'], $_POST['desc'], $_POST['link'], $categorias);
     echo 1;
     return;
   }

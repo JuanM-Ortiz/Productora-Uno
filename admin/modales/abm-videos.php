@@ -26,7 +26,7 @@
             <?php
             foreach ($categorias as $categoria) : ?>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="<?php echo $categoria['id']; ?>" id="<?php echo $categoria['id']; ?>">
+                <input class="form-check-input" type="checkbox" value="<?php echo $categoria['id']; ?>" id="<?php echo str_replace(' ', '_', $categoria['titulo']); ?>">
                 <label class="form-check-label" for="<?php echo $categoria['id']; ?>">
                   <?php echo $categoria['titulo'] ?>
                 </label>

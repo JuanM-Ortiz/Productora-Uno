@@ -56,6 +56,7 @@ $categorias = $categoriasModel->getCategorias();
           <th class="text-center">Descripcion</th>
           <th class="text-center">Categoria</th>
           <th class="text-center">Video</th>
+          <th class="text-center d-none"></th>
           <th class="text-center">Acciones</th>
         </tr>
       </thead>
@@ -68,20 +69,21 @@ $categorias = $categoriasModel->getCategorias();
                   <td class="text-center">' . $video['titulo'] . '</th>
                   <td class="text-center">' . $video['descripcion'] . '</td>
                   <td class="text-center">' . $video['categoria'] . '</td>
-                  <td class="text-center"><a href=' . $link[0] . ' target="_blank">Ver</a></td>';
-          if ($categoria['deleted_at'] == null) {
+                  <td class="text-center"><a href=' . $link[0] . ' target="_blank">Ver</a></td>
+                  <td class="text-center d-none">' . $video['link'] . '</td>';
+          if ($video['deleted_at'] == null) {
             echo '
                   <td class="text-center">
-                    <button class="btn btn-warning" title="Editar" type="button" id="editarCategoria">
+                    <button class="btn btn-warning" title="Editar" type="button" id="editarVideo">
                       <i class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn btn-danger" title="Eliminar" type="button" onclick="borrarCategoria(' . $categoria['id'] . ')">
+                    <button class="btn btn-danger" title="Eliminar" type="button" onclick="borrarVideo(' . $video['id'] . ')">
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>';
           } else {
             echo '<td class="text-center">
-                    <button class="btn btn-success" title="Reactivar" type="button" onclick="restaurarCategoria(' . $categoria['id'] . ')">
+                    <button class="btn btn-success" title="Reactivar" type="button" onclick="restaurarVideo(' . $video['id'] . ')">
                       <i class="fa fa-undo"></i>
                     </button>
                   </td>';
@@ -99,43 +101,59 @@ $categorias = $categoriasModel->getCategorias();
 <script src="../assets/js/jquery.min.js"></script>
 
 <script>
-  function borrarCategoria(idCategoria) {
-    $.post("controllers/categoria.php", {
-      eliminar: idCategoria
+  function borrarVideo(idVideo) {
+    $.post("controllers/video.php", {
+      eliminar: idVideo
     }, function(result) {
       if (!result) {
         window.alert('Ocurrio un error.');
         return;
       }
       if (result) {
-        window.alert('Categoria eliminada correctamente!');
+        window.alert('Video eliminado correctamente!');
         window.location.reload();
       }
     });
   }
 
-  function restaurarCategoria(idCategoria) {
-    $.post("controllers/categoria.php", {
-      restaurar: idCategoria
+  function restaurarVideo(idVideo) {
+    $.post("controllers/video.php", {
+      restaurar: idVideo
     }, function(result) {
       if (!result) {
         window.alert('Ocurrio un error.');
         return;
       }
       if (result) {
-        window.alert('Categoria restaurada correctamente!');
+        window.alert('Video restaurado correctamente!');
         window.location.reload();
       }
     });
   }
 
   $(document).ready(function() {
+
     $(document).on("click", "#agregarVideo", function() {
       $("#videosModal").modal("show");
       $("#formVideos").trigger("reset");
     })
-    $(document).on("click", "#editarCategoria", function() {
-      $("#categoriasModal").modal("show");
+
+    $(document).on("click", "#editarVideo", function() {
+      $("#videosModal").modal("show");
+      let row = $(this).closest("tr");
+      let videoId = row.find("td:nth-child(1)").text();
+      let title = row.find("td:nth-child(2)").text();
+      let desc = row.find("td:nth-child(3)").text();
+      let categorias = row.find("td:nth-child(4)").text();
+      let link = row.find("td:nth-child(6)");
+      categorias = categorias.split(',');
+      $("#videoId").val(videoId);
+      $("#title").val(title);
+      $("#desc").val(desc);
+      $("#link").val(link[0].innerHTML);
+      categorias.forEach(element => {
+        $(`#${element.trim().replace(' ', '_')}`).attr("checked", true)
+      });
     })
 
     $(document).on("click", "#guardarVideo", function() {
