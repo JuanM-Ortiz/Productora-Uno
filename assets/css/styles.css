@@ -1,7 +1,12 @@
 :root {
+  /*
   --main-color: #28112B;
-  --secondary-color: #423336;
+  --secondary-color: #393342;
   --terciary-color: #791560;
+  */
+  --main-color: #002A61;
+  --secondary-color: #302e42; 
+  --terciary-color: #026FCA;
 }
 
 @keyframes aparecer {
@@ -49,10 +54,12 @@ input, textarea{
 }
 
 .logo{
-  filter: hue-rotate(89deg) drop-shadow(2px 4px 6px black) brightness(120%);
+  filter:drop-shadow(2px 4px 6px black) brightness(120%);
   animation: aparecer 1.5s;
   width: 30%;
+  /*  hue-rotate(89deg)  */
 }
+
 
 .main-hero{
   background-image: url(../img/main-bg-dark.jpg);
