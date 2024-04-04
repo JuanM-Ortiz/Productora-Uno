@@ -41,14 +41,32 @@ $categorias = $categoryModel->getCategorias();
     <div class="bg-primary w-100">
       <div class="row py-5 gx-0">
         <div class="col-md-8 offset-md-2 col-12">
-          <h2 class="text-white text-center fw-bold fs-1">SOBRE NOSOTROS</h2>
-          <p class="text-white py-3 px-2" style="font-size: 1.5rem;">
+          <!-- <p class="text-white py-3 px-2" style="font-size: 1.5rem;">
             Donde la calidad y la creatividad se encuentran. Somos expertos en llevar la producción audiovisual a otro
             nivel. Nos especializamos en LiveStream de eventos, producción de falso vivo, creación de videos,
             fotografía, edición y circuito cerrado. Nuestra misión es clara: priorizamos la calidad de nuestros
             productos para asegurar que cada proyecto no solo cumpla, sino que exceda las expectativas de nuestros
             clientes. Ya sea capturando momentos únicos o creando experiencias visuales inolvidables, Productora Uno es
             tu aliado para innovar en el mundo audiovisual.
+            </p>
+          -->
+          <h2 class="text-white text-center fw-bold fs-1 titulo">NUESTRA MISION</h2>
+          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
+            En Productora Uno Streaming, nos enorgullece ofrecer un servicio integral de transmisiones en vivo, circuito cerrado y falso vivo de eventos. Nos dedicamos a proporcionar a nuestros clientes todas las herramientas necesarias para maximizar la interacción y el alcance desde un único lugar.
+          </p>
+
+          <h2 class="text-white text-center fw-bold fs-1 titulo">QUIENES SOMOS</h2>
+          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
+            Contamos con un equipo profesional altamente capacitado y equipado con la última tecnología para llevar a cabo streamings de calidad excepcional. Nuestro equipo incluye expertos en la producción, camarógrafos, directores de cámaras, operadores de streaming y sonidistas.
+            
+          <h2 class="text-white text-center fw-bold fs-1 titulo">NUESTROS SERVICIOS</h2>
+          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">    
+            Ofrecemos soluciones completas para la transmisión de una amplia variedad de eventos, desde conferencias y festivales hasta recitales, eventos deportivos, culturales, religiosos y políticos. Transmitimos en vivo en plataformas populares como Facebook, Youtube e Instagram, y te brindamos la posibilidad de transmitir directamente en tu propia página web.
+          </p>
+
+          <h2 class="text-white text-center fw-bold fs-1 titulo">COMPROMISO CON LA CALIDAD</h2>
+          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
+            Priorizamos la calidad en cada aspecto de nuestro servicio para asegurarnos de que tu evento sea accesible y atractivo en cualquier dispositivo, ya sea un teléfono celular, una tablet, una computadora o un televisor.
           </p>
         </div>
         <div class="col-md-8 offset-md-2 col-12 px-1">
@@ -58,13 +76,13 @@ $categorias = $categoryModel->getCategorias();
                 <input class="form-control form-control-lg bg-secondary" name="nombre" type="text" placeholder="Nombre" aria-label="Nombre" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="celular" type="text" placeholder="Celular" aria-label="Celular" required>
+                <input class="form-control form-control-lg bg-secondary" name="celular" type="text" placeholder="Teléfono" aria-label="Celular" required>
               </div>
               <div class="col-6 py-2">
                 <input class="form-control form-control-lg bg-secondary" name="email" type="email" placeholder="Email" aria-label="Email" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="link" type="text" placeholder="Link de referencia" aria-label="Link de referencia" required>
+                <input class="form-control form-control-lg bg-secondary" name="link" type="text" placeholder="Asunto" aria-label="Link de referencia" required>
               </div>
               <div class="col-12 py-2">
                 <textarea class="form-control form-control-lg bg-secondary" name="mensaje" placeholder="Escribe tu consulta..." rows=5></textarea>
@@ -102,13 +120,13 @@ $categorias = $categoryModel->getCategorias();
     <footer class="row py-5 ">
       <div class="col-md-4 text-md-start col-12 text-center ">
         <h3 class="fw-bold">Contacto</h3>
-        <p><i class="fas fa-phone pt-3"></i> +54 2656 478424</p>
-        <p><i class="fas fa-envelope"></i> info@productora-uno.com.ar</p>
+        <p><i class="fas fa-phone pt-3"></i> +54 9 2664 544173</p>
+        <p><i class="fas fa-envelope"></i> productoraunosl@gmail.com</p>
         <p><i class="fab fa-whatsapp"></i> +54 9 2664 344614</p>
       </div>
       <div class="col-md-4 text-center pt-3 pt-md-0 d-flex  justify-content-center align-items-center">
         <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
-        <!-- <a href="#" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a> -->
+        <a href="https://www.facebook.com/aleciorivera.ph" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a>
         <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
       </div>
       <div class="col-md-4 d-flex justify-content-center align-items-center">

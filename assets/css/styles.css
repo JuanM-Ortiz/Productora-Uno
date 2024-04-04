@@ -4,9 +4,9 @@
   --secondary-color: #393342;
   --terciary-color: #791560;
   */
-  --main-color: #002A61;
-  --secondary-color: #302e42; 
-  --terciary-color: #026FCA;
+  --main-color: #1673bf;
+  --secondary-color: #4d4b5d; 
+  --terciary-color: #08487c;
 }
 
 @keyframes aparecer {
@@ -54,7 +54,8 @@ input, textarea{
 }
 
 .logo{
-  filter:drop-shadow(2px 4px 6px black) brightness(120%);
+  /* filter:drop-shadow(2px 4px 6px black) brightness(120%);*/
+  filter:drop-shadow(2px 3px 3px rgb(255, 255, 255)) brightness(120%);
   animation: aparecer 1.5s;
   width: 30%;
   /*  hue-rotate(89deg)  */
@@ -72,7 +73,7 @@ footer a, p, h3 {
 }
 
 .footer-icon {
-  color: var(--terciary-color)!important;
+  color: var(--main-color)!important;
 }
 
 .footer-line {
@@ -180,4 +181,8 @@ hr {
   .item {
     height: 20rem;
   }
+}
+
+.titulo {
+  text-shadow: 2px 2px 2px rgba(0,0,0,1);
 }

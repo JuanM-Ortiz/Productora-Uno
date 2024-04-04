@@ -68,7 +68,7 @@ $videos = $videosModel->getVideosByCategoria($_GET['id']);
       </div>
       <div class="col-md-4 text-center pt-3 pt-md-0">
         <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
-        <!-- <a href="#" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a> -->
+        <a href="https://www.facebook.com/aleciorivera.ph" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a>
         <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
       </div>
       <div class="col-md-4 mt-5 text-center">
