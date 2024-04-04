@@ -55,7 +55,7 @@ input, textarea{
 
 .logo{
   /* filter:drop-shadow(2px 4px 6px black) brightness(120%);*/
-  filter:drop-shadow(2px 3px 3px rgb(255, 255, 255)) brightness(120%);
+  filter:drop-shadow(2px 3px 3px rgb(255, 255, 255)) brightness(150%);
   animation: aparecer 1.5s;
   width: 30%;
   /*  hue-rotate(89deg)  */
@@ -64,8 +64,9 @@ input, textarea{
 
 .main-hero{
   background-image: url(../img/main-bg-dark.jpg);
-  background-size: cover;
-  filter: brightness(0.8);
+  background-size: auto;
+  background-position: center;
+  /*filter: brightness(0.6);*/
 }
 
 footer a, p, h3 {
