@@ -5,9 +5,9 @@
   --terciary-color: #791560;
   */
   --main-color: #1673bf;
-  --secondary-color: #4d4b5d; 
+  --secondary-color: #686676; 
   --terciary-color: #08487c;
-  --grayblue-color: #6b6e85;
+  --grayblue-color: #9899a1;
 }
 
 @keyframes aparecer {
@@ -176,11 +176,12 @@ hr {
   max-height:600px!important;
   filter:grayscale(100%) blur(2px);
   background-position:center;
+  background-size: cover;
 }
 
 .category-title{
   animation: aparecer 1.5s;
-  left: 40% !important;
+  left: 38% !important;
   top: 40% !important;
   font-size: 5rem!important;
   text-shadow: -6px 4px 4px #181a1b;
@@ -205,4 +206,14 @@ hr {
 
 .titulo {
   text-shadow: 2px 2px 2px rgba(0,0,0,1);
+}
+
+#footer {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+#servicios {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
 }

@@ -6,22 +6,21 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php'; 
 
 function cumpleRequisitos($postData) {
-    return !empty($postData['nombre']) && !empty($postData['celular']) && !empty($postData['link']) && !empty($postData['mensaje']) && !empty($postData['email']);
+    return !empty($postData['nombre']) && !empty($postData['telefono']) && !empty($postData['asunto']) && !empty($postData['mensaje']) && !empty($postData['email']);
 }
 
 if ($_POST && cumpleRequisitos($_POST)) {
     $nombre = htmlspecialchars($_POST['nombre']);
-    $celular = htmlspecialchars($_POST['celular']);
+    $telefono = htmlspecialchars($_POST['telefono']);
     $email = htmlspecialchars($_POST['email']);
-    $link = htmlspecialchars($_POST['link']);
+    $asunto = htmlspecialchars($_POST['asunto']);
     $mensaje = htmlspecialchars($_POST['mensaje']);
 
     $para = "juanmaelpanadero33@gmail.com";
-    $asunto = "Consulta de {$nombre}";
+    $asunto = "Consulta de {$nombre} - {$asunto} ";
 
     $contenido = "{$nombre} ha realizado una consulta via web:
-    Celular: {$celular}
-    Link de referencia: {$link}
+    Telefono: {$telefono}
     Email: {$email}
     Mensaje: {$mensaje}";
 

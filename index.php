@@ -113,19 +113,19 @@ $categorias = $categoryModel->getCategorias();
           <form action="src/enviar.php" method="post">
             <div class="row">
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="nombre" type="text" placeholder="Nombre" aria-label="Nombre" required>
+                <input class="form-control form-control-lg" name="nombre" type="text" placeholder="Nombre" aria-label="Nombre" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="celular" type="text" placeholder="Teléfono" aria-label="Celular" required>
+                <input class="form-control form-control-lg" name="telefono" type="text" placeholder="Teléfono" aria-label="Celular" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="email" type="email" placeholder="Email" aria-label="Email" required>
+                <input class="form-control form-control-lg" name="email" type="email" placeholder="Email" aria-label="Email" required>
               </div>
               <div class="col-6 py-2">
-                <input class="form-control form-control-lg bg-secondary" name="link" type="text" placeholder="Asunto" aria-label="Link de referencia" required>
+                <input class="form-control form-control-lg" name="asunto" type="text" placeholder="Asunto" aria-label="Link de referencia" required>
               </div>
               <div class="col-12 py-2">
-                <textarea class="form-control form-control-lg bg-secondary" name="mensaje" placeholder="Escribe tu consulta..." rows=5></textarea>
+                <textarea class="form-control form-control-lg" name="mensaje" placeholder="Escribe tu consulta..." rows=5></textarea>
               </div>
               <div class="col-md-4 offset-md-4 col-12 text-center py-3">
                 <button type="submit" class="btn btn-primary btn-lg text-white px-5 border-0">ENVIAR</button>
@@ -139,8 +139,10 @@ $categorias = $categoryModel->getCategorias();
 
   <!-- CAROUSEL -->
 
+  <h2 class="text-white m-5 text-center fw-bold fs-1 titulo">Nuestros Trabajos</h2>
 
   <div class="portfolio-carousel owl-carousel owl-theme">
+    
     <?php
     foreach ($categorias as $categoria) :
       echo '<div class="item" data-content="' . $categoria['titulo'] . '">
@@ -155,7 +157,7 @@ $categorias = $categoryModel->getCategorias();
   <!-- FOOTER -->
 
   <div class="container bg-dark footer">
-    <footer class="row py-5 ">
+    <footer class="row py-5 " id="footer">
       <div class="col-md-4 text-md-start col-12 text-center ">
         <h3 class="fw-bold">Contacto</h3>
         <p><i class="fas fa-phone pt-3"></i> +54 9 2664 544173</p>
@@ -166,6 +168,7 @@ $categorias = $categoryModel->getCategorias();
         <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
         <a href="https://www.facebook.com/aleciorivera.ph" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a>
         <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
+        <a href="https://www.youtube.com/@productoraunomerlo6460" target="_blank" class="mx-3"><i class="fa-brands fa-youtube fa-4x footer-icon"></i></a>
       </div>
       <div class="col-md-4 d-flex justify-content-center align-items-center">
         <p class="mb-0"><i class="fas fa-map-marker-alt"></i> Merlo, San Luis, Argentina.</p>

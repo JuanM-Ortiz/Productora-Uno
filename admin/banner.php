@@ -41,7 +41,7 @@ if (!$_SESSION['user']) {
 
     <div class="row">
       <div class="col-12 text-center">
-        <img src="../assets/img/main-bg-dark.jpg" alt="Main banner">
+        <img class="img-fluid" src="../assets/img/main-bg-dark.jpg" alt="Main banner">
       </div>
     </div>
 

@@ -35,7 +35,7 @@ if ($_POST['userName'] && $_POST['password']) {
 </head>
 
 <body>
-  <div class="vh-100 d-flex align-items-center justify-content-center bg-primary">
+  <div class="vh-100 d-flex align-items-center justify-content-center bg-dark">
     <div class="card p-4 bg-gray">
       <div class="card-body">
         <form class="form-login" action="index.php" method="POST">
