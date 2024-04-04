@@ -7,6 +7,7 @@
   --main-color: #1673bf;
   --secondary-color: #4d4b5d; 
   --terciary-color: #08487c;
+  --grayblue-color: #6b6e85;
 }
 
 @keyframes aparecer {
@@ -37,6 +38,18 @@ body, html, p, a, h1, h2, h3, h4, h5, h6 {
 
 .bg-secondary{
   background-color: var(--secondary-color)!important;  
+}
+
+.bg-grayblue{
+  background-color: var(--grayblue-color)!important;  
+}
+
+.text-main{
+  color:var(--main-color)!important;
+}
+
+.text-terciary{
+  color: var(--terciary-color)!important;
 }
 
 input::placeholder{
@@ -91,7 +104,7 @@ hr {
   height: 2px;
 }
 
-.item {
+.portfolio-carousel .item {
   color: aliceblue;
   justify-content: center;
   align-items: center;
@@ -101,7 +114,7 @@ hr {
   filter: grayscale(80%);
 }
 
-.item::after {
+.portfolio-carousel .item::after {
   content: attr(data-content);
   position: absolute;
   top: 0;
@@ -138,6 +151,12 @@ hr {
 
 .item:hover::after {
   opacity: 1; 
+}
+.servicios-carousel .item{
+  transition: .2s;
+}
+.servicios-carousel .item:hover {
+  transform: scale(1.1); 
 }
 
 .item:hover img {
