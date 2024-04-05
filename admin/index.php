@@ -10,10 +10,11 @@ if ($_POST['userName'] && $_POST['password']) {
   session_start();
 
   if (!$_SESSION['user'] = $userModel->getUser($_POST['userName'], $hash)) {
-    header("Location: index.php");
+    header("Location: index.php?e=1");
+    die;
   }
-
   header("Location: categorias.php");
+  die;
 }
 
 ?>
@@ -47,6 +48,11 @@ if ($_POST['userName'] && $_POST['password']) {
             <label for="password" class="form-label label text-white">Contraseña</label>
             <input type="password" name="password" class="form-control label" id="password">
           </div>
+          <?php if ($_GET['e'] == 1) : ?>
+            <div class="mb-3">
+              <span class="badge text-bg-danger fs-5"><i class="fa fa-warning"></i> Usuario o clave incorrecto!</span>
+            </div>
+          <?php endif; ?>
           <div class="text-center">
             <button type="submit" class="btn btn-primary btn-lg border-0 mt-4">Iniciar Sesión</button>
           </div>

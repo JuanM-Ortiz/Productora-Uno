@@ -54,7 +54,6 @@ $categorias = $categoriasModel->getCategorias(true);
         <tr>
           <th class="text-center">#</th>
           <th class="text-center">Titulo</th>
-          <th class="text-center">Descripcion</th>
           <th class="text-center">Imagen</th>
           <th class="text-center">Acciones</th>
         </tr>
@@ -64,7 +63,6 @@ $categorias = $categoriasModel->getCategorias(true);
           echo '<tr>
                   <td class="text-center">' . $categoria['id'] . '</th>
                   <td class="text-center">' . $categoria['titulo'] . '</th>
-                  <td class="text-center">' . $categoria['descripcion'] . '</td>
                   <td class="text-center"><a target="_blank" href="../assets/img/' . $categoria['img'] . '">' . $categoria['img'] . '</a></td>';
           if ($categoria['deleted_at'] == null) {
             echo '
@@ -137,17 +135,15 @@ $categorias = $categoriasModel->getCategorias(true);
       var files = $('#img')[0].files[0];
       let categoryId = $("#categoryId").val() ?? null;
       let title = $("#title").val();
-      let desc = $("#desc").val();
 
-      if (!title || !desc || !files) {
+      if (!title) {
         alert("Complete todos los campos...");
         return;
       }
 
-      fd.append('file', files);
+      fd.append('file', files ?? null);
       fd.append('categoryId', categoryId);
       fd.append('title', title);
-      fd.append('desc', desc);
 
       $.ajax({
         url: 'controllers/categoria.php',
@@ -173,10 +169,8 @@ $categorias = $categoriasModel->getCategorias(true);
       let row = $(this).closest("tr");
       let categoryId = row.find("td:nth-child(1)").text();
       let title = row.find("td:nth-child(2)").text();
-      let desc = row.find("td:nth-child(3)").text();
       $("#categoryId").val(categoryId);
-      $("#title").val(title);
-      $("#desc").val(desc);
+      $("#title").val(title.trim());
     })
   })
 </script>

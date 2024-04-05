@@ -9,6 +9,8 @@ $categoria = $categoryModel->getCategoriaById($_GET['id']);
 
 $videosModel = new Videos($conexion);
 $videos = $videosModel->getVideosByCategoria($_GET['id']);
+
+$date = date('h-i-s');
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ $videos = $videosModel->getVideosByCategoria($_GET['id']);
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css?ver=<?php echo $date; ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -63,7 +65,7 @@ $videos = $videosModel->getVideosByCategoria($_GET['id']);
   <!-- FOOTER -->
 
   <div class="container bg-dark footer">
-    <footer class="row py-5 " >
+    <footer class="row py-5 ">
       <div class="col-md-4 text-md-start col-12 text-center ">
         <h3 class="fw-bold">Contacto</h3>
         <p><i class="fas fa-phone pt-3"></i> +2656 478424</p>
@@ -76,7 +78,7 @@ $videos = $videosModel->getVideosByCategoria($_GET['id']);
         <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
         <a href="https://www.youtube.com/@productoraunomerlo6460" target="_blank" class="mx-3"><i class="fa-brands fa-youtube fa-4x footer-icon"></i></a>
       </div>
-      
+
       <div class="col-md-4 text-md-end text-center mt-md-2 mt-5">
         <p><i class="fas fa-map-marker-alt"></i> Merlo, San Luis, Argentina.</p>
       </div>

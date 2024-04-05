@@ -43,17 +43,23 @@ class Categorias
     return true;
   }
 
-  public function editar($idCategoria, $titulo, $descripcion, $img)
+  public function editar($idCategoria, $titulo, $img = null)
   {
-    $query = "UPDATE categorias SET titulo = '{$titulo}', descripcion = '{$descripcion}', img = '{$img}' WHERE id = $idCategoria";
+    $query = "UPDATE categorias SET titulo = '{$titulo}'";
+
+    if (!empty($img)) {
+      $query .= ", img = '{$img}'";
+    }
+
+    $query .= " WHERE id = $idCategoria";
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return true;
   }
 
-  public function crear($titulo, $descripcion, $img)
+  public function crear($titulo, $img)
   {
-    $query = "INSERT INTO categorias (titulo, descripcion, img) VALUES ('{$titulo}','{$descripcion}','{$img}')";
+    $query = "INSERT INTO categorias (titulo, img) VALUES ('{$titulo}','{$img}')";
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
     return true;

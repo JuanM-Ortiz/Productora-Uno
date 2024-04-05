@@ -16,21 +16,6 @@ if ($_POST['eliminar'] && $_POST['eliminar'] != '') {
   $conexion = null;
 }
 
-/*
-
-if ($_POST['restaurar'] && $_POST['restaurar'] != '') {
-  $conexion = Conexion::conectar();
-
-  $usuariosModel = new Usuarios($conexion);
-
-  if ($usuariosModel->restaurarPorId($_POST['restaurar'])) {
-    echo 1;
-  }
-
-  $conexion = null;
-}
-
-*/
 
 if ($_POST['username'] && $_POST['pass']) {
   $conexion = Conexion::conectar();
