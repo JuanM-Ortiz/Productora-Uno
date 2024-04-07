@@ -113,8 +113,8 @@ $date = date('h-i-s');
         <div class="col-md-8 offset-md-2 col-12">
           <h2 class="text-white text-center fw-bold fs-1 titulo">Acerca de nosotros</h2>
           <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
-            En Productora Uno, nos dedicamos apasionadamente a brindar soluciones audiovisuales de alta calidad para satisfacer las necesidades de nuestros clientes en cada etapa de su proyecto. Con una amplia gama de servicios, nos enorgullece ofrecer un enfoque integral y creativo para cada desafío.<br>
-            En Productora Uno, estamos comprometidos a superar las expectativas de nuestros clientes en cada proyecto, combinando creatividad, profesionalismo y tecnología de vanguardia para ofrecer resultados excepcionales. ¡Déjenos ser su socio audiovisual y juntos llevaremos su visión al siguiente nivel!
+            En Productora Uno, nos dedicamos apasionadamente a brindar soluciones audiovisuales de alta calidad para satisfacer las necesidades de nuestros clientes en cada etapa de su proyecto. Con una amplia gama de servicios, nos enorgullece ofrecer un enfoque integral y creativo para cada desafío.<br><br>
+            Estamos comprometidos a superar las expectativas de nuestros clientes en cada proyecto, combinando creatividad, profesionalismo y tecnología de vanguardia para ofrecer resultados excepcionales. ¡Déjenos ser su socio audiovisual y juntos llevaremos su visión al siguiente nivel!
           </p>
         </div>
         <div class="col-md-8 offset-md-2 col-12 px-1">
