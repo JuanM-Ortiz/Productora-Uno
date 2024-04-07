@@ -45,36 +45,63 @@ $date = date('h-i-s');
       <div class="item p-3">
         <div class="card bg-grayblue" style="min-height: 250px;">
           <div class="card-body text-center text-white d-flex flex-column justify-content-center">
-            <i class="fa fa-video fa-2x text-terciary"></i>
-            <h5 class="card-title text-terciary">Transmisión de Eventos</h5>
-            <p class="card-text text-white">Ofrecemos soluciones completas para la transmisión de una amplia variedad de eventos, desde conferencias y festivales hasta recitales, eventos deportivos, culturales, religiosos y políticos.</p>
-          </div>
-        </div>
-      </div>
-      <div class="item p-3">
-        <div class="card bg-grayblue" style="min-height: 250px;">
-          <div class="card-body text-center text-white d-flex flex-column justify-content-center">
             <i class="fa fa-brands fa-youtube fa-2x text-terciary"></i>
             <h5 class="card-title text-terciary">LiveStream</h5>
-            <p class="card-text text-white">Transmitimos en vivo en plataformas populares como Facebook, Youtube e Instagram, y te brindamos la posibilidad de transmitir directamente en tu propia página web.</p>
+            <p class="card-text text-white">Transmitimos eventos en tiempo real a través de plataformas digitales para llegar a audiencias globales.</p>
           </div>
         </div>
       </div>
       <div class="item p-3">
         <div class="card bg-grayblue" style="min-height: 250px;">
           <div class="card-body text-center text-white d-flex flex-column justify-content-center">
-            <i class="fa fa-camera fa-2x text-terciary"></i>
-            <h5 class="card-title text-terciary">Fotografía</h5>
-            <p class="card-text text-white">Llevamos adelante producciones fotográficas institucionales, de prensa y publicitarias con un equipo con años de experiencia.</p>
+            <i class="fa fa-video fa-2x text-terciary"></i>
+            <h5 class="card-title text-terciary">Producción de video</h5>
+            <p class="card-text text-white">Desde la idea hasta la entrega final, creamos videos impactantes para diversos fines, como publicitarios, institucionales y promocionales.</p>
+          </div>
+        </div>
+      </div>
+      <div class="item p-3">
+        <div class="card bg-grayblue" style="min-height: 250px;">
+          <div class="card-body text-center text-white d-flex flex-column justify-content-center">
+            <i class="fa fa-clapperboard fa-2x text-terciary"></i>
+            <h5 class="card-title text-terciary">Postproducción</h5>
+            <p class="card-text text-white">Editamos, corregimos colores y añadimos efectos visuales y sonido para transformar el material bruto en contenido finalizado de alta calidad.</p>
           </div>
         </div>
       </div>
       <div class="item p-3">
         <div class="card bg-grayblue" style="min-height: 250px;">
           <div class="card-body text-center text-main d-flex flex-column justify-content-center">
-            <i class="fa fa-clapperboard fa-2x text-terciary"></i>
-            <h5 class="card-title text-terciary">Publicidad y Videoclips</h5>
-            <p class="card-text text-white">Ayudamos a marcas y artistas a comunicar visualmente atributos, valores, conceptos e historias.</p>
+            <i class="fa fa-camera fa-2x text-terciary"></i>
+            <h5 class="card-title text-terciary">Fotografía</h5>
+            <p class="card-text text-white">Capturamos momentos especiales y visualmente impresionantes con nuestra habilidad para contar historias a través de imágenes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="item p-3">
+        <div class="card bg-grayblue" style="min-height: 250px;">
+          <div class="card-body text-center text-main d-flex flex-column justify-content-center">
+            <i class="fa fa-champagne-glasses fa-2x text-terciary"></i>
+            <h5 class="card-title text-terciary">Cobertura de eventos</h5>
+            <p class="card-text text-white">Documentamos eventos de manera profesional, capturando cada detalle significativo para crear recuerdos duraderos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="item p-3">
+        <div class="card bg-grayblue" style="min-height: 250px;">
+          <div class="card-body text-center text-main d-flex flex-column justify-content-center">
+            <i class="fa fa-mobile-screen-button fa-2x text-terciary"></i>
+            <h5 class="card-title text-terciary">Contenido para redes sociales</h5>
+            <p class="card-text text-white">Creamos contenido atractivo y optimizado para diversas plataformas sociales para aumentar el compromiso y la interacción con la audiencia.</p>
+          </div>
+        </div>
+      </div>
+      <div class="item p-3">
+        <div class="card bg-grayblue" style="min-height: 250px;">
+          <div class="card-body text-center text-main d-flex flex-column justify-content-center">
+            <img src="assets/img/drone.png" style="width: 50px!important;margin-right: auto;margin-left: auto;">
+            <h5 class="card-title text-terciary">Drone</h5>
+            <p class="card-text text-white">Realizamos perspectivas áereas únicas, filmaciones dinámicas, exploración de locaciones, grabaciones en lugares inaccesibles, producción de videos promocionales, eventos en vivo y producciones cinematográficas.</p>
           </div>
         </div>
       </div>
@@ -84,33 +111,11 @@ $date = date('h-i-s');
     <div class="bg-dark w-100">
       <div class="row py-5 gx-0">
         <div class="col-md-8 offset-md-2 col-12">
-          <!-- <p class="text-white py-3 px-2" style="font-size: 1.5rem;">
-            Donde la calidad y la creatividad se encuentran. Somos expertos en llevar la producción audiovisual a otro
-            nivel. Nos especializamos en LiveStream de eventos, producción de falso vivo, creación de videos,
-            fotografía, edición y circuito cerrado. Nuestra misión es clara: priorizamos la calidad de nuestros
-            productos para asegurar que cada proyecto no solo cumpla, sino que exceda las expectativas de nuestros
-            clientes. Ya sea capturando momentos únicos o creando experiencias visuales inolvidables, Productora Uno es
-            tu aliado para innovar en el mundo audiovisual.
-            </p>
-          -->
           <h2 class="text-white text-center fw-bold fs-1 titulo">Acerca de nosotros</h2>
           <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
-            En Productora Uno nos enorgullece ofrecer un servicio integral de transmisiones en vivo, circuito cerrado y falso vivo de eventos. Nos dedicamos a proporcionar a nuestros clientes todas las herramientas necesarias para maximizar la interacción y el alcance desde un único lugar.
+            En Productora Uno, nos dedicamos apasionadamente a brindar soluciones audiovisuales de alta calidad para satisfacer las necesidades de nuestros clientes en cada etapa de su proyecto. Con una amplia gama de servicios, nos enorgullece ofrecer un enfoque integral y creativo para cada desafío.<br>
+            En Productora Uno, estamos comprometidos a superar las expectativas de nuestros clientes en cada proyecto, combinando creatividad, profesionalismo y tecnología de vanguardia para ofrecer resultados excepcionales. ¡Déjenos ser su socio audiovisual y juntos llevaremos su visión al siguiente nivel!
           </p>
-
-          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
-            Contamos con un equipo profesional altamente capacitado y equipado con la última tecnología para llevar a cabo streamings de calidad excepcional. Nuestro equipo incluye expertos en la producción, camarógrafos, directores de cámaras, operadores de streaming y sonidistas.
-          </p>
-          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
-            Priorizamos la calidad en cada aspecto de nuestro servicio para asegurarnos de que tu evento sea accesible y atractivo en cualquier dispositivo, ya sea un teléfono celular, una tablet, una computadora o un televisor.
-          </p>
-          <!--  <h2 class="text-white text-center fw-bold fs-1 titulo">QUIENES SOMOS</h2> -->
-          <!--    <h2 class="text-white text-center fw-bold fs-1 titulo">NUESTROS SERVICIOS</h2>
-          <p class="text-white py-3 px-2 text-center" style="font-size: 1.5rem;">
-            Ofrecemos soluciones completas para la transmisión de una amplia variedad de eventos, desde conferencias y festivales hasta recitales, eventos deportivos, culturales, religiosos y políticos. Transmitimos en vivo en plataformas populares como Facebook, Youtube e Instagram, y te brindamos la posibilidad de transmitir directamente en tu propia página web.
-          </p> -->
-
-          <!-- <h2 class="text-white text-center fw-bold fs-1 titulo">COMPROMISO CON LA CALIDAD</h2> -->
         </div>
         <div class="col-md-8 offset-md-2 col-12 px-1">
           <form action="src/enviar.php" method="post">

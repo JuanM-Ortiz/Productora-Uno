@@ -46,7 +46,7 @@ $date = date('h-i-s');
         <?php
         foreach ($videos as $video) :
           echo '
-              <div class="col-4 px-4 text-center">
+              <div class="col-12 col-md-4 py-2 py-md-0 px-4 text-center">
                 <h4 class="text-white pb-3">' . $video['titulo'] . '</h4>
                 <div class="ratio ratio-16x9 video-container">
                   ' . $video['link'] . '
