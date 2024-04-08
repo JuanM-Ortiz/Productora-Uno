@@ -6,15 +6,15 @@ if (!$_SESSION['user']) {
 }
 
 include_once '../src/db/conn.php';
-include_once '../src/models/videos.php';
+include_once '../src/models/contenidos.php';
 include_once '../src/models/categorias.php';
 
 $conexion = Conexion::conectar();
 
-$videosModel = new Videos($conexion);
+$contenidosModel = new Contenidos($conexion);
 $categoriasModel = new Categorias($conexion);
 
-$videos = $videosModel->getVideos(true);
+$contenidos = $contenidosModel->getContenidos(true);
 $categorias = $categoriasModel->getCategorias();
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ $categorias = $categoriasModel->getCategorias();
   <div class="container vh-100 mt-5">
     <div class="d-flex mt-5 justify-content-between mb-3">
       <h5>Videos</h5>
-      <button class="btn btn-success fw-bold" id="agregarVideo"><i class="fa fa-plus"></i> Nuevo</button>
+      <button class="btn btn-success fw-bold" id="agregarContenido"><i class="fa fa-plus"></i> Nuevo</button>
     </div>
 
     <table class="table table-primary">
@@ -57,33 +57,35 @@ $categorias = $categoriasModel->getCategorias();
           <th class="text-center">Categoria</th>
           <th class="text-center">Video</th>
           <th class="text-center d-none"></th>
+          <th class="text-center d-none"></th>
           <th class="text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($videos as $video) :
-          $link = explode('src=', $video['link']);
+        <?php foreach ($contenidos as $contenido) :
+          $link = explode('src=', $contenido['link']);
           $link = explode("title=", $link[1]);
           echo '<tr>
-                  <td class="text-center">' . $video['id'] . '</th>
-                  <td class="text-center">' . $video['titulo'] . '</th>
-                  <td class="text-center">' . $video['descripcion'] . '</td>
-                  <td class="text-center">' . $video['categoria'] . '</td>
+                  <td class="text-center">' . $contenido['id'] . '</th>
+                  <td class="text-center">' . $contenido['titulo'] . '</th>
+                  <td class="text-center">' . $contenido['descripcion'] . '</td>
+                  <td class="text-center">' . $contenido['categoria'] . '</td>
                   <td class="text-center"><a href=' . $link[0] . ' target="_blank">Ver</a></td>
-                  <td class="text-center d-none">' . $video['link'] . '</td>';
-          if ($video['deleted_at'] == null) {
+                  <td class="text-center d-none">' . $contenido['link'] . '</td>
+                  <td class="text-center d-none">' . $contenido['tipo'] . '</td>';
+          if ($contenido['deleted_at'] == null) {
             echo '
                   <td class="text-center">
-                    <button class="btn btn-warning" title="Editar" type="button" id="editarVideo">
+                    <button class="btn btn-warning" title="Editar" type="button" id="editarContenido">
                       <i class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn btn-danger" title="Eliminar" type="button" onclick="borrarVideo(' . $video['id'] . ')">
+                    <button class="btn btn-danger" title="Eliminar" type="button" onclick="borrarContenido(' . $contenido['id'] . ')">
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>';
           } else {
             echo '<td class="text-center">
-                    <button class="btn btn-success" title="Reactivar" type="button" onclick="restaurarVideo(' . $video['id'] . ')">
+                    <button class="btn btn-success" title="Reactivar" type="button" onclick="restaurarContenido(' . $contenido['id'] . ')">
                       <i class="fa fa-undo"></i>
                     </button>
                   </td>';
@@ -94,38 +96,38 @@ $categorias = $categoriasModel->getCategorias();
       </tbody>
     </table>
   </div>
-  <?php include_once 'modales/abm-videos.php'; ?>
+  <?php include_once 'modales/abm-contenidos.php'; ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="../assets/js/jquery.min.js"></script>
 
 <script>
-  function borrarVideo(idVideo) {
-    $.post("controllers/video.php", {
-      eliminar: idVideo
+  function borrarVideo(idContenido) {
+    $.post("controllers/contenido.php", {
+      eliminar: idContenido
     }, function(result) {
       if (!result) {
         window.alert('Ocurrio un error.');
         return;
       }
       if (result) {
-        window.alert('Video eliminado correctamente!');
+        window.alert('Contenido eliminado correctamente!');
         window.location.reload();
       }
     });
   }
 
-  function restaurarVideo(idVideo) {
-    $.post("controllers/video.php", {
-      restaurar: idVideo
+  function restaurarVideo(idContenido) {
+    $.post("controllers/contenido.php", {
+      restaurar: idContenido
     }, function(result) {
       if (!result) {
         window.alert('Ocurrio un error.');
         return;
       }
       if (result) {
-        window.alert('Video restaurado correctamente!');
+        window.alert('Contenido restaurado correctamente!');
         window.location.reload();
       }
     });
@@ -133,58 +135,86 @@ $categorias = $categoriasModel->getCategorias();
 
   $(document).ready(function() {
 
-    $(document).on("click", "#agregarVideo", function() {
-      $("#videosModal").modal("show");
-      $("#formVideos").trigger("reset");
+    $(document).on("click", "#agregarContenido", function() {
+      $("#contenidoModal").modal("show");
+      $("#imgLabel").html("Imagen")
+      $("#formContenidos").trigger("reset");
+      $("#tipo").trigger("change");
     })
 
-    $(document).on("click", "#editarVideo", function() {
-      $("#videosModal").modal("show");
+    $("#tipo").change(function() {
+      if ($(this).val() == 1) {
+        $("#youtubeLink").removeClass("d-none");
+        $("#imgForm").addClass("d-none");
+      } else {
+        $("#youtubeLink").addClass("d-none");
+        $("#imgForm").removeClass("d-none");
+      }
+    });
+
+    $(document).on("click", "#editarContenido", function() {
+      $("#contenidoModal").modal("show");
       let row = $(this).closest("tr");
-      let videoId = row.find("td:nth-child(1)").text();
+      let contenidoId = row.find("td:nth-child(1)").text();
       let title = row.find("td:nth-child(2)").text();
       let desc = row.find("td:nth-child(3)").text();
       let categorias = row.find("td:nth-child(4)").text();
       let link = row.find("td:nth-child(6)");
+      let tipo = row.find("td:nth-child(7)").text();
       categorias = categorias.split(',');
-      $("#videoId").val(videoId);
+      $("#contenidoId").val(contenidoId);
       $("#title").val(title);
       $("#desc").val(desc);
-      $("#link").val(link[0].innerHTML);
+      $("#tipo").val(tipo);
+      if (tipo == 2) {
+        $("#imgLabel").html("Imagen (se reemplazará la actual)")
+      }
+      $("#tipo").trigger("change");
       categorias.forEach(element => {
         $(`#${element.trim().replace(' ', '_')}`).attr("checked", true)
       });
     })
 
-    $(document).on("click", "#guardarVideo", function() {
-      let videoId = $("#videoId").val() ?? null;
+    $(document).on("click", "#guardarContenido", function() {
+      var fd = new FormData();
+      let files = $('#img')[0].files[0];
+      let contenidoId = $("#contenidoId").val() ?? null;
       let title = $("#title").val();
       let desc = $("#desc").val();
       let link = $("#link").val();
+      let tipo = $("#tipo").val();
       let categorias = $('.form-check-input:checkbox:checked').map(function() {
         return this.value;
       }).get();
 
-      if (!title || !desc || !categorias || !link) {
+      if (!title || !desc || !categorias) {
         alert("Complete todos los campos...");
         return;
       }
       categorias = JSON.stringify(categorias);
-      $.post("controllers/video.php", {
-        videoId,
-        title,
-        desc,
-        link,
-        categorias,
-      }, function(result) {
-        if (!result) {
-          window.alert('Ocurrio un error.');
-          return;
-        }
-        if (result) {
-          window.alert('Video guardado correctamente!');
-          window.location.reload();
-        }
+      fd.append('file', files ?? null);
+      fd.append('contenidoId', contenidoId);
+      fd.append('title', title);
+      fd.append('desc', desc);
+      fd.append('link', link ?? null);
+      fd.append('categorias', categorias);
+      fd.append('tipo', tipo);
+      $.ajax({
+        url: 'controllers/contenido.php',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(result) {
+          if (!result) {
+            window.alert('Ocurrio un error.');
+            return;
+          }
+          if (result) {
+            window.alert('Contenido guardado correctamente!');
+            window.location.reload();
+          }
+        },
       });
     })
 

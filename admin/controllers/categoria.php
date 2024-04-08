@@ -29,7 +29,8 @@ if ($_POST['restaurar'] && $_POST['restaurar'] != '') {
 
 if ($_POST['title']) {
   if ($_FILES['file']['name'] && !empty($_FILES['file']['name'])) {
-    $filename = $_FILES['file']['name'];
+    $hora = date('his');
+    $filename = $hora . $_FILES['file']['name'];
     $location = "../../assets/img/" . $filename;
     if (!move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
       return false;
