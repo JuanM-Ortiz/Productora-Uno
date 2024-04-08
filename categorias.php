@@ -1,16 +1,18 @@
 <?php
 include_once 'src/db/conn.php';
 include_once 'src/models/categorias.php';
-include_once 'src/models/videos.php';
+include_once 'src/models/contenidos.php';
 
 $conexion = Conexion::conectar();
 $categoryModel = new Categorias($conexion);
 $categoria = $categoryModel->getCategoriaById($_GET['id']);
 
-$videosModel = new Videos($conexion);
-$videos = $videosModel->getVideosByCategoria($_GET['id']);
+$contenidosModel = new Contenidos($conexion);
+$videos = $contenidosModel->getVideosByCategoria($_GET['id']);
+$imagenes = $contenidosModel->getImagenesByCategoria($_GET['id']);
 
 $date = date('h-i-s');
+$c = 0;
 ?>
 
 <!DOCTYPE html>
@@ -41,11 +43,50 @@ $date = date('h-i-s');
       </div>
       <h2 class="position-absolute text-white category-title"><?php echo $categoria[0]['titulo'] ?></h2>
     </main>
-    <div class="py-3 bg-dark">
-      <div class="row py-5 gx-0">
-        <?php
-        foreach ($videos as $video) :
-          echo '
+    <?php if ($imagenes && !empty($imagenes)) : ?>
+      <div class="py-3 bg-dark">
+        <div class="container px-3 py-5">
+          <div class="row">
+            <h4 class="text-center text-white fs-2 mb-5">Galería de imágenes</h4>
+            <div class="col-6 offset-3">
+              <div id="contenidoImagenes" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <?php foreach ($imagenes as $imagen) : ?>
+                    <button type="button" data-bs-target="#contenidoImagenes" data-bs-slide-to="<?php echo $c; ?>" class="<?php echo $c == 0 ? 'active' : ''; ?>" aria-current="true" aria-label="<?php echo $imagen['titulo']; ?>"></button>
+                  <?php endforeach; ?>
+                </div>
+                <div class="carousel-inner" style="max-height: 450px;">
+                  <?php foreach ($imagenes as $imagen) : ?>
+                    <div class="carousel-item <?php echo $c == 0 ? 'active' : ''; ?>" style="max-height: 450px;">
+                      <img src="<?php echo 'assets/img/' . $imagen['link'] ?>" class="mx-auto d-block img-fluid" alt="<?php echo $imagen['titulo']; ?>" style="max-height: 450px;">
+
+                    </div>
+                  <?php endforeach; ?>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#contenidoImagenes" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#contenidoImagenes" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    <?php endif; ?>
+    <?php if ($videos && !empty($videos)) : ?>
+      <div class="py-3 bg-dark">
+        <div class="row py-5 gx-0">
+          <h4 class="text-center text-white mb-5 fs-2">Galería de videos</h4>
+          <?php
+          foreach ($videos as $video) :
+            echo '
               <div class="col-12 col-md-4 py-2 py-md-0 px-4 text-center">
                 <h4 class="text-white pb-3">' . $video['titulo'] . '</h4>
                 <div class="ratio ratio-16x9 video-container">
@@ -54,10 +95,11 @@ $date = date('h-i-s');
                 <p class="pt-5">' . $video['descripcion'] . '</p>
               </div>
             ';
-        endforeach;
-        ?>
+          endforeach;
+          ?>
+        </div>
       </div>
-    </div>
+    <?php endif; ?>
   </section>
 
   <hr>

@@ -50,12 +50,12 @@ INSERT INTO `categorias` (`id`, `titulo`, `descripcion`, `img`, `deleted_at`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias_videos`
+-- Estructura de tabla para la tabla `contenidos_categorias`
 --
 
-CREATE TABLE `categorias_videos` (
+CREATE TABLE `contenidos_categorias` (
   `id` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
+  `id_contenido` int(11) NOT NULL,
   `id_video` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -63,7 +63,7 @@ CREATE TABLE `categorias_videos` (
 -- Volcado de datos para la tabla `categorias_videos`
 --
 
-INSERT INTO `categorias_videos` (`id`, `id_categoria`, `id_video`) VALUES
+INSERT INTO `contenidos_categorias` (`id`, `id_categoria`, `id_contenido`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 2);
@@ -91,14 +91,15 @@ INSERT INTO `usuarios` (`id`, `username`, `contraseña`, `deleted_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `videos`
+-- Estructura de tabla para la tabla `contenidos`
 --
 
-CREATE TABLE `videos` (
+CREATE TABLE `contenidos` (
   `id` int(11) NOT NULL,
   `titulo` varchar(150) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `link` varchar(500) DEFAULT NULL,
+  `tipo` tinyint(2) NOT NULL DEFAULT 1 COMMENT '1 = video\r\n2 = imagen',
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -21,6 +21,18 @@ class Contenidos
     $resultado->execute();
     return $resultado->fetchAll(PDO::FETCH_ASSOC);
   }
+  public function getImagenesByCategoria($idCategoria)
+  {
+    $query = "SELECT c.* 
+    FROM contenidos c
+    JOIN contenidos_categorias cc ON c.id = cc.id_contenido
+    WHERE cc.id_categoria = $idCategoria
+    AND c.deleted_at is null
+    AND c.tipo = 2";
+    $resultado = $this->conexion->prepare($query);
+    $resultado->execute();
+    return $resultado->fetchAll(PDO::FETCH_ASSOC);
+  }
 
   public function getContenidos($all = false)
   {
