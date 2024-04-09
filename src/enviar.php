@@ -1,44 +1,42 @@
 <?php
+require '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php'; 
 
-function cumpleRequisitos($postData) {
+function cumpleRequisitos($postData)
+{
     return !empty($postData['nombre']) && !empty($postData['telefono']) && !empty($postData['asunto']) && !empty($postData['mensaje']) && !empty($postData['email']);
 }
 
-if ($_POST && cumpleRequisitos($_POST)) {
+if ($_POST['nombre'] && cumpleRequisitos($_POST)) {
     $nombre = htmlspecialchars($_POST['nombre']);
     $telefono = htmlspecialchars($_POST['telefono']);
     $email = htmlspecialchars($_POST['email']);
     $asunto = htmlspecialchars($_POST['asunto']);
     $mensaje = htmlspecialchars($_POST['mensaje']);
 
-    $para = "juanmaelpanadero33@gmail.com";
+    $para = "alecio@productorauno.com.ar";
     $asunto = "Consulta de {$nombre} - {$asunto} ";
 
-    $contenido = "{$nombre} ha realizado una consulta via web:
-    Telefono: {$telefono}
-    Email: {$email}
+    $contenido = "{$nombre} ha realizado una consulta via web:<br>
+    Telefono: {$telefono} <br>
+    Email: {$email} <br>
     Mensaje: {$mensaje}";
 
     $mail = new PHPMailer(true);
-
     try {
-        
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'mail.prueba.juan@gmail.com'; 
-        $mail->Password = '$-vM5F:s'; 
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-        
-        $mail->setFrom('mail.prueba.juan@gmail.com', 'Productora Uno'); 
-        $mail->addAddress($para);
 
+        $mail->isSMTP();
+        $mail->Host = 'c1952327.ferozo.com';
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Username = 'alecio@productorauno.com.ar';
+        $mail->Password = 'vTE*Dgu7tG';
+        $mail->Port = 465;
+        $mail->setFrom($email);
+        $mail->addAddress($para);
         $mail->isHTML(true);
         $mail->Subject = $asunto;
         $mail->Body = $contenido;

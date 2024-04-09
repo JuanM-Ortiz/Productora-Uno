@@ -103,7 +103,7 @@ $categorias = $categoriasModel->getCategorias();
 <script src="../assets/js/jquery.min.js"></script>
 
 <script>
-  function borrarVideo(idContenido) {
+  function borrarContenido(idContenido) {
     $.post("controllers/contenido.php", {
       eliminar: idContenido
     }, function(result) {

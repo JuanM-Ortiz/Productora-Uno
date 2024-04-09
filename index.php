@@ -176,7 +176,7 @@ $date = date('h-i-s');
         <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
         <a href="https://www.facebook.com/aleciorivera.ph" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a>
         <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
-        <a href="https://www.youtube.com/@productoraunomerlo6460" target="_blank" class="mx-3"><i class="fa-brands fa-youtube fa-4x footer-icon"></i></a>
+        <a href="https://www.youtube.com/@productoraunoSL" target="_blank" class="mx-3"><i class="fa-brands fa-youtube fa-4x footer-icon"></i></a>
       </div>
       <div class="col-md-4 d-flex justify-content-center align-items-center">
         <p class="mb-0"><i class="fas fa-map-marker-alt"></i> Merlo, San Luis, Argentina.</p>
@@ -194,6 +194,7 @@ $date = date('h-i-s');
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/owl.carousel.min.js"></script>
   <script src="assets/js/main.js?ver=<?php echo $date; ?>"></script>
+
 </body>
 
 
