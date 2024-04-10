@@ -10,9 +10,9 @@ $categoria = $categoryModel->getCategoriaById($_GET['id']);
 $contenidosModel = new Contenidos($conexion);
 $videos = $contenidosModel->getVideosByCategoria($_GET['id']);
 $imagenes = $contenidosModel->getImagenesByCategoria($_GET['id']);
-
+//$esPalabraLarga = strlen(trim($categoria[0]['titulo'])) >= 16;
 $date = date('h-i-s');
-$c = 0;
+
 ?>
 
 <!DOCTYPE html>
@@ -48,20 +48,24 @@ $c = 0;
         <div class="container px-3 py-5">
           <div class="row">
             <h4 class="text-center text-white fs-2 mb-5">Galería de imágenes</h4>
-            <div class="col-6 offset-3">
+            <div class="col-md-6 offset-md-3 col-12">
               <div id="contenidoImagenes" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                  <?php foreach ($imagenes as $imagen) : ?>
+                  <?php $c = 0;
+                  foreach ($imagenes as $imagen) : ?>
                     <button type="button" data-bs-target="#contenidoImagenes" data-bs-slide-to="<?php echo $c; ?>" class="<?php echo $c == 0 ? 'active' : ''; ?>" aria-current="true" aria-label="<?php echo $imagen['titulo']; ?>"></button>
-                  <?php endforeach; ?>
+                  <?php $c++;
+                  endforeach; ?>
                 </div>
                 <div class="carousel-inner" style="max-height: 450px;">
-                  <?php foreach ($imagenes as $imagen) : ?>
+                  <?php $c = 0;
+                  foreach ($imagenes as $imagen) : ?>
                     <div class="carousel-item <?php echo $c == 0 ? 'active' : ''; ?>" style="max-height: 450px;">
                       <img src="<?php echo 'assets/img/' . $imagen['link'] ?>" class="mx-auto d-block img-fluid" alt="<?php echo $imagen['titulo']; ?>" style="max-height: 450px;">
 
                     </div>
-                  <?php endforeach; ?>
+                  <?php $c++;
+                  endforeach; ?>
 
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#contenidoImagenes" data-bs-slide="prev">
@@ -110,15 +114,15 @@ $c = 0;
     <footer class="row py-5 ">
       <div class="col-md-4 text-md-start col-12 text-center ">
         <h3 class="fw-bold">Contacto</h3>
-        <p><i class="fas fa-phone pt-3"></i> +2656 478424</p>
-        <p><i class="fas fa-envelope"></i> email@email.com</p>
-        <p><i class="fab fa-whatsapp"></i> +2664 212121</p>
+        <p><i class="fas fa-phone pt-3"></i> +54 9 2664 544173</p>
+        <p><i class="fas fa-envelope"></i> productoraunosl@gmail.com</p>
+        <p><i class="fab fa-whatsapp"></i> +54 9 2664 344614</p>
       </div>
       <div class="col-md-4 text-center pt-3 pt-md-0">
         <a href="https://www.instagram.com/productorauno/" target="_blank" class="mx-3"><i class="fab fa-instagram fa-4x footer-icon "></i></a>
         <a href="https://www.facebook.com/aleciorivera.ph" target="_blank" class="mx-3"><i class="fab fa-facebook fa-4x footer-icon"></i></a>
         <a href="https://wa.me/5492664344614" target="_blank" class="mx-3"><i class="fab fa-whatsapp fa-4x footer-icon"></i></a>
-        <a href="https://www.youtube.com/@productoraunomerlo6460" target="_blank" class="mx-3"><i class="fa-brands fa-youtube fa-4x footer-icon"></i></a>
+        <a href="https://www.youtube.com/@productoraunoSL" target="_blank" class="mx-3"><i class="fa-brands fa-youtube fa-4x footer-icon"></i></a>
       </div>
 
       <div class="col-md-4 text-md-end text-center mt-md-2 mt-5">

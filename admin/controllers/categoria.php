@@ -28,6 +28,8 @@ if ($_POST['restaurar'] && $_POST['restaurar'] != '') {
 }
 
 if ($_POST['title']) {
+  $filename = null;
+
   if ($_FILES['file']['name'] && !empty($_FILES['file']['name'])) {
     $hora = date('his');
     $filename = $hora . $_FILES['file']['name'];
@@ -36,8 +38,9 @@ if ($_POST['title']) {
       return false;
     }
   }
-  if (empty($_FILES['file']['name'])) {
-    $filename = null;
+
+  if (empty($_FILES['file']['name']) && !empty($link)) {
+    $filename = $link;
   }
 
   $conexion = Conexion::conectar();

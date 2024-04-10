@@ -14,7 +14,7 @@ $conexion = Conexion::conectar();
 $contenidosModel = new Contenidos($conexion);
 $categoriasModel = new Categorias($conexion);
 
-$contenidos = $contenidosModel->getContenidos(true);
+$contenidos = $contenidosModel->getContenidos();
 $categorias = $categoriasModel->getCategorias();
 ?>
 <!DOCTYPE html>
@@ -63,14 +63,21 @@ $categorias = $categoriasModel->getCategorias();
       </thead>
       <tbody>
         <?php foreach ($contenidos as $contenido) :
-          $link = explode('src=', $contenido['link']);
-          $link = explode("title=", $link[1]);
+          $link = '';
+          if ($contenido['tipo'] == 1) {
+            $link = explode('src=', $contenido['link']);
+            $link = explode("title=", $link[1]);
+            $link = str_replace('"', '', $link[0]);
+          } else {
+            $link = "../assets/img/" . $contenido['link'];
+          }
+
           echo '<tr>
                   <td class="text-center">' . $contenido['id'] . '</th>
                   <td class="text-center">' . $contenido['titulo'] . '</th>
                   <td class="text-center">' . $contenido['descripcion'] . '</td>
                   <td class="text-center">' . $contenido['categoria'] . '</td>
-                  <td class="text-center"><a href=' . $link[0] . ' target="_blank">Ver</a></td>
+                  <td class="text-center"><a href="' . $link . '" target="_blank">Ver</a></td>
                   <td class="text-center d-none">' . $contenido['link'] . '</td>
                   <td class="text-center d-none">' . $contenido['tipo'] . '</td>';
           if ($contenido['deleted_at'] == null) {
@@ -103,7 +110,7 @@ $categorias = $categoriasModel->getCategorias();
 <script src="../assets/js/jquery.min.js"></script>
 
 <script>
-  function borrarVideo(idContenido) {
+  function borrarContenido(idContenido) {
     $.post("controllers/contenido.php", {
       eliminar: idContenido
     }, function(result) {

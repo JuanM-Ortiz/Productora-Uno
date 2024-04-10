@@ -42,12 +42,13 @@ class Contenidos
     c.deleted_at as deleted_at
     FROM contenidos c 
     JOIN contenidos_categorias cc ON c.id = cc.id_contenido
-    JOIN categorias ca ON cc.id_categoria = ca.id
-    GROUP BY c.id";
+    JOIN categorias ca ON cc.id_categoria = ca.id";
 
     if (!$all) {
       $query .= ' WHERE c.deleted_at is null';
     }
+
+    $query .= " GROUP BY c.id";
 
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
@@ -71,7 +72,14 @@ class Contenidos
 
   public function editar($idContenido, $titulo, $desc, $link, $tipo, $categorias)
   {
-    $query = "UPDATE contenidos SET titulo= '{$titulo}', descripcion= '{$desc}', link='{$link}', tipo=$tipo WHERE id = $idContenido";
+    $query = "UPDATE contenidos SET titulo= '{$titulo}', descripcion= '{$desc}', tipo=$tipo";
+
+    if (!empty($link)) {
+      $query .= ", link = '{$link}'";
+    }
+
+    $query .= " WHERE id = $idContenido";
+
     $resultado = $this->conexion->prepare($query);
     $resultado->execute();
 

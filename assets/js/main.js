@@ -73,4 +73,4 @@ window.addEventListener('scroll', function() {
         footer.style.opacity = 1; // Asegúrate de que el footer inicialmente tenga opacity: 0 en CSS
       }, 200); // Ajusta el tiempo según prefieras
     }
-  });  
+  });
